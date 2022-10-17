@@ -5,23 +5,23 @@ from github import GithubREST
 class ResponseHandler:
 
     @staticmethod
-    def get_pr_title(res):
+    def get_pr_title(res: dict) -> str:
         return res['title']
 
     @staticmethod
-    def get_pr_author(res):
+    def get_pr_author(res: dict) -> str:
         return res['user']['login']
 
     @staticmethod
-    def get_pr_head_sha(res):
+    def get_pr_head_sha(res: dict) -> str:
         return res['head']['sha']
 
     @staticmethod
-    def get_pr_number(res):
+    def get_pr_number(res: dict) -> int:
         return res['number']
 
     @staticmethod
-    def get_pr_last_updated(res):
+    def get_pr_last_updated(res: dict) -> str:
         return res['updated_at']
 
     @staticmethod
@@ -31,7 +31,7 @@ class ResponseHandler:
         return len(res['data'])
 
     @staticmethod
-    def additional_pages(links: dict):
+    def additional_pages(links: dict) -> str:
         if not links:
             return "All PRs in this repository have been returned in this query."
         else:
