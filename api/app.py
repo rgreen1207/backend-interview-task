@@ -33,6 +33,9 @@ def github_api_root_example() -> dict:
 def github_repository_pull_requests(repository: str):
     page = request.args.get("page", DEFAULT_PAGE)
     per_page = request.args.get("per_page", DEFAULT_PER_PAGE)
+
+    #git defaults to return only 'open' prs. included this line should the query be for ['open', 'closed', 'all'] state(s) instead of exclusively 'open'
+    #this is set to 'open' by default as well
     pr_state = {'state':request.args.get("state", 'open')}
 
     query_params = QueryParams(page=page, per_page=per_page)

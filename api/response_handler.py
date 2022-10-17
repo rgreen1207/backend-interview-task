@@ -35,8 +35,9 @@ class ResponseHandler:
         if not links:
             return "All PRs in this repository have been returned in this query."
         else:
+            #string manipulation to get the count of other pages
             page_count = int(re.search('page=(.*)&per_page=', links['last']['url']).group(1))
-            return f"There are an additional {page_count-1} pages of PRs for this repository."
+            return f"There are an additional {page_count-1} page(s) of PRs for this repository."
 
     @classmethod
     def get_pr_info(cls, repository, res: dict) -> dict:
@@ -46,11 +47,11 @@ class ResponseHandler:
             output.update({
                 f"Pull Request#{prNumber}":
                     {
-                    'PR Title': cls.get_pr_title(item),
-                    'PR Author': cls.get_pr_author(item),
-                    'Commits on PR': cls.pr_commit_count(repository, prNumber),
-                    'Head SHA': cls.get_pr_head_sha(item),
-                    'Last Update': cls.get_pr_last_updated(item)
+                        'PR Title': cls.get_pr_title(item),
+                        'PR Author': cls.get_pr_author(item),
+                        'Commits on PR': cls.pr_commit_count(repository, prNumber),
+                        'Head SHA': cls.get_pr_head_sha(item),
+                        'Last Update': cls.get_pr_last_updated(item)
                     }
                 })
         return output
